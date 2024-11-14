@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 20px;
+    margin: 20px;
+    flex-direction: row;
+}
+.products__card {
+    height: 300px;
+    width: 15%;
+    font-family: "Montserrat", sans-serif;
+    border: 1px solid #000000;
+    position: relative;
+}
+.card__image-block {
+    display: flex;
+    height: 50%;
+    width: 100%;
+    justify-content: center;
+}
+.card__image {
+    height: 100%;
+}
+.card__description {
+    padding: 10px;
+    height: 50%;
+    box-sizing: border-box;
+    position: relative;
+}
+.card__meta {
+    display: flex;
+    font-size: 14px;
+    color: #a6a6a6;
+    margin: 0 0 10px 0;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.card__name {
+    font-size: 16px;
+    margin: 0 0 10px 0;
+}
+.card__rating {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+.card__cost {
+    position: absolute;
+    bottom: 10px;
+    font-weight: 700;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+.card__rating::after {
+    content: "";
+    background-image: url("img/star.svg");
+    display: block;
+    height: 18px;
+    width: 18px;
+    background-size: contain;
+}
+.card__cost::after {
+    content: "";
+    background-image: url("img/rub.svg");
+    display: block;
+    height: 20px;
+    width: 20px;
+    background-size: contain;
+}
