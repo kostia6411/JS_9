@@ -14,6 +14,7 @@
     font-family: "Montserrat", sans-serif;
     border: 1px solid #000000;
     position: relative;
+    margin: 0 20px 0 20px;
 }
 .card__image-block {
     display: flex;
@@ -71,4 +72,132 @@
     height: 20px;
     width: 20px;
     background-size: contain;
+}
+.products__add {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.add_card {
+    width: 40%;
+    visibility: visible;
+    opacity: 1;
+}
+.add_card.hide {
+    visibility: hidden;
+    opacity: 0;
+}
+.add__form {
+    width: 100%;
+}
+.form__fields {
+    opacity: 0;
+    position: absolute;
+    width: 85%;
+    visibility: hidden;
+}
+.button-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.form__image-path, .form__rating, .form__value, .form__name {
+    margin: 0 0 10px 0;
+}
+.form__fields.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+.delete__image-block {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+.card__delete {
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    cursor: pointer;
+    top: -15px;
+    right: -10px;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.3s;
+}
+.products__card:hover .card__delete {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal {
+    position: absolute;
+    height: 100px;
+    width: 35%;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    background-color: #fff;
+    left: 50%;
+    transform: translateX(-50%);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    top: -100%;
+}
+.modal__title {
+    font-weight: bolder;
+    font-size: 18px;
+    font-family: 'Arial', 'Verdana', sans-serif;
+}
+.modal__buttons {
+    width: 100%;
+    margin: 10px 0 0 0;
+    text-align: center;
+}
+.modal__button {
+    background-color: #000;
+    color: #fff;
+    bolder: none;
+    padding: 5px 10px 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+#yes {
+    right: 10px;
+}
+
+@keyframes shaky {
+    from {
+        top: 0%;
+    }
+    50% {
+        top: 6%;
+    }
+    to {
+        top: 3%;
+    }
+}
+
+@keyframes shaky-close {
+    from {
+        top: 3%;
+    }
+    50% {
+        top: 7%;
+    }
+    to {
+        top: -100%;
+    }
+}
+.modal.active {
+    animation: shaky 0.5s ease-in-out forwards;
+}
+.modal.closed {
+    animation: shaky-close 0.5s ease-in-out forwards;
 }

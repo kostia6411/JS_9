@@ -6,9 +6,10 @@ if (localStorage.getItem("counter") ) {
     localStorage.setItem('counter', 0);
 }
 
-function createProdcut(card) {
+function createProduct(card) {
     counter++;
     localStorage.setItem('counter', counter);
+    card.data = counter
     localStorage.setItem(`card ${counter}`, JSON.stringify(card));
 }
 
@@ -21,9 +22,12 @@ function appendProducts() {
         if (key != "counter") {
             infoCard = JSON.parse(localStorage.getItem(key));
 
-            let products__card = document.createElement('div');
-            products__card.className = "products__card";
-            products__card.innerHTML = `<div class="card__image-block">
+            let productsCard = document.createElement('div');
+            productsCard.className = "products__card";
+            productsCard.innerHTML = `<div class="delete__image-block">
+                            <img src="img/delete.svg" class="card__delete" data=${infoCard["data"]}>
+                        </div>
+                        <div class="card__image-block">
                             <img src="${infoCard["card__image"]}" class="card__image">
                         </div>
                         <div class="card__description">
@@ -34,18 +38,69 @@ function appendProducts() {
                             <div class="card__name">${infoCard["card__name"]}</div>
                             <div class="card__cost">${infoCard["card__cost"]}</div>
                         </div>`
-            products.append(products__card);
+            products.append(productsCard);
         }
     }
 }
 
-createProdcut(
-    {
-    card__image: "img/tomatoes.webp",
-    card__rating: 5,
-    card__value: '200 ккал',
-    card__name: 'Помидоры',
-    card__cost: 350
+let addCard = document.querySelector('.products__add');
+let addImg = document.querySelector('.add_card');
+let formFields = document.querySelector('.form__fields');
+let addForm = document.querySelector('.add__form');
+let addButton = document.querySelector('.form__button');
+
+addCard.addEventListener('click', function() {
+  addImg.classList.add("hide");
+  formFields.classList.add("show");
+})
+
+addButton.addEventListener('click', function(event) {
+    let formImagePath = document.querySelector('.form__image-path');
+    let formRating = document.querySelector('.form__rating');
+    let formValue = document.querySelector('.form__value');
+    let formName = document.querySelector('.form__name');
+    let formCost = document.querySelector('.form__cost');
+    event.preventDefault();
+    if(!addForm.checkValidity()){
+        console.log("Form data is not valid");
     }
-);
+    createProduct(
+        {
+        card__image: formImagePath.value,
+        card__rating: formRating.value,
+        card__value: formValue.value,
+        card__name: formName.value,
+        card__cost: formCost.value
+        }
+    );
+    location.reload();
+})
 appendProducts();
+
+let cardDelete = document.querySelectorAll('.card__delete');
+let modal = document.querySelector('.modal');
+
+for (let i = 0; i < cardDelete.length ; i++) {
+    cardDelete[i].addEventListener('click', function() {
+        let deleteData = cardDelete[i].getAttribute("data");
+        modal.classList.add('active');
+        modal.classList.remove('closed');
+
+        let buttonNo = document.querySelector('#no');
+        buttonNo.addEventListener('click', function() {
+                modal.classList.add('closed');
+                modal.classList.remove('active');
+        })
+
+        let buttonYes = document.querySelector('#yes');
+        buttonYes.addEventListener('click', function() {
+                modal.classList.add('closed');
+                modal.classList.remove('active');
+                localStorage.removeItem(`card ${deleteData}`);
+                setTimeout(function(){
+                    location.reload();
+                }, 600);
+        })
+    })
+}
+

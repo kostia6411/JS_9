@@ -7,8 +7,46 @@
 </head>
 <body>
 
+    <div class="modal">
+        <div class="modal__title">
+            Вы точно хотите удалить данный элемент?
+        </div>
+        <div class="modal__buttons">
+            <button class="modal__button" id="yes">Да</button>
+            <button class="modal__button" id="no">Нет</button>
+        </div>
+    </div>
     <div class="products">
-
+        <div class="products__add products__card">
+            <img src="img/add.svg" class="add_card">
+            <div class="form__fields">
+                <form class="add__form">
+                    <label>
+                        Путь до изображения
+                        <input class="form__image-path text-field" id="image-path" required>
+                    </label>
+                    <label>
+                        Оценка
+                        <input class="form__rating text-field" id="rating" required>
+                    </label>
+                    <label>
+                        Ккал.
+                        <input class="form__value text-field" id="value" required>
+                    </label>
+                    <label>
+                        Название
+                        <input class="form__name text-field" id="name" required>
+                    </label>
+                    <label>
+                        Цена
+                        <input class="form__cost text-field" id="cost" required>
+                    </label>
+                </form>
+                <div class="button-block">
+                    <button class="form__button" type="submit">Отправить</button>
+                </div>
+            </div>
+        </div>
     </div>
 <script src="script.js"></script>
 </body>
